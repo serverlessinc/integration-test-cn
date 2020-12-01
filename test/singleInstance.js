@@ -5,22 +5,22 @@ const expect = require('chai').expect;
 const projectFolder = 'example_scf_folder';
 
 const execInFolder = async (cmd) => {
-  return exec(cmd, { cwd: projectFolder }); 
+  return exec(cmd, { cwd: projectFolder });
 }
 
 describe('Single instance', function () {
   this.timeout(60000);
 
   before('Init a project', async () => {
-    console.log('> Starting tests, initing a sample project...');
+    console.log('\n> Starting tests, initing a sample project...');
     const { stdout, stderr } = await exec(`sls init express-starter --name ${projectFolder}`);
     expect(stdout).to.contain('Successfully');
-    console.log('> Sample project initialized successfuly');
+    console.log('> Sample project initialized successfuly\n');
   });
 
   after(async () => {
-    console.log('> Test finished , removing resources...');
-    const {stdout, stderr} = await execInFolder(`sls remove`);
+    console.log('\n> Test finished , removing resources...');
+    const { stdout, stderr } = await execInFolder(`sls remove`);
     expect(stdout).to.contain('Success');
     await exec(`rm -rf ${projectFolder}`);
     console.log('> Instance code is remove locally and remotely');
@@ -32,12 +32,18 @@ describe('Single instance', function () {
   });
 
   it('sls help', async () => {
-    const {stdout, stderr} = await execInFolder('sls help');
+    const { stdout, stderr } = await execInFolder('sls help');
     expect(stdout).to.contain('Serverless 指令');
   });
 
-  it('sls deploy', async () => {
-    const {stdout, stderr} = await execInFolder('sls deploy');
-    expect(stdout).to.contain('Full details:');
-  })
+  describe('sls deploy', () => {
+    it('sls deploy', async () => {
+      const { stdout, stderr } = await execInFolder('sls deploy');
+      expect(stdout).to.contain('Full details:');
+    });
+    it('sls deploy --debug', async () => {
+      const { stdout, stderr } = await execInFolder('sls deploy --debug');
+      expect(stdout).to.contain('Full details:');
+    });
+  });
 });
