@@ -1,0 +1,25 @@
+{
+  "name": "integration-test-cn",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/serverlessinc/integration-test-cn.git"
+  },
+  "author": "timqian",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/serverlessinc/integration-test-cn/issues"
+  },
+  "homepage": "https://github.com/serverlessinc/integration-test-cn#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "serverless": "^2.13.0"
+  }
+}
