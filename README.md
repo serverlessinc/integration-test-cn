@@ -1,4 +1,10 @@
-# Integration test suite for tencent-serverless
+> Coding mirror: https://sftest11.coding.net/public/integration-test-cn/integration-test-cn/git/files (auto synced every day)
+
+## About
+
+- Integration tests are stored in the `test` folder.
+- This repo will be synced to coding.net every day.
+- The Jenkinsfile is used for CI on coding.net
 
 ## Usage
 
@@ -8,7 +14,7 @@
 # create a .env file and fill it with secret key
 touch .env
 
-# install latest serverless framework(used to test)
+# install latest serverless framework (used to test)
 npm i serverless -g
 
 # install local dependencies
@@ -18,11 +24,17 @@ npm i
 npm test
 ```
 
-### On coding.net CI
+### Trigger on coding CI
 
-Trigger coding CI with API call: https://help.coding.net/docs/ci/trigger.html
+```bash
+curl -u pt20oxxgsiyc:001cc717496aa8fad85389906aa8a9c152b94db0 \
+   -v -X POST  'https://sftest11.coding.net/api/cci/job/399367/trigger' \
+   -H 'Content-Type: application/json' \
+   -d '
+    {
+    "ref": "main",
+    "envs": []
+}'
+```
 
-
-### On GitHub action
-
-https://github.com/serverlessinc/integration-test-cn
+> Note: the link will expire in 2021-12-01
