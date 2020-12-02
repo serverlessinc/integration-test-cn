@@ -31,11 +31,11 @@ describe('Nested template', function () {
   })
 
   describe('sls deploy', () => {
-		it('sls deploy --target vpc', async () => {
-			const { stdout, stderr } = await execInFolder('sls deploy --target vpc');
+    it('sls deploy --target vpc', async () => {
+      const { stdout, stderr } = await execInFolder('sls deploy --target vpc');
       expect(stdout).to.contain('Full details:');
       expect(stderr).to.equal('');
-		})
+    })
     it('sls deploy', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy');
       expect(stdout).to.contain('successfully');
