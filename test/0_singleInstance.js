@@ -43,12 +43,12 @@ describe('Single instance', function () {
   describe('sls deploy', () => {
     it('sls deploy', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy');
-      expect(stdout).to.contain('Full details:');
+      expect(stdout).to.contain('前往控制台查看应用详细信息');
       expect(stderr).to.equal('');
     });
     it('sls deploy --debug', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy --debug');
-      expect(stdout).to.contain('Full details:');
+      expect(stdout).to.contain('前往控制台查看应用详细信息');
       expect(stderr).to.equal('');
     });
   });

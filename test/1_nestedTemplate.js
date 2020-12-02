@@ -33,7 +33,7 @@ describe('Nested template', function () {
   describe('sls deploy', () => {
     it('sls deploy --target vpc', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy --target vpc');
-      expect(stdout).to.contain('Full details:');
+      expect(stdout).to.contain('前往控制台查看应用详细信息');
       expect(stderr).to.equal('');
     })
     it('sls deploy', async () => {
