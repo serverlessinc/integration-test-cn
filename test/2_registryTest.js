@@ -16,7 +16,7 @@ describe('Run registry command', function () {
     console.log(versionInfo)
     console.log('start init template project')
     await exec(
-      `git clone -b ci-test git@github.com:serverless-components/tencent-react-starter.git`,
+      `git clone -b ci-test https://github.com/serverless-components/tencent-react-starter.git`,
     )
 
     expect(fs.lstatSync(templateName).isDirectory()).eq(true)
