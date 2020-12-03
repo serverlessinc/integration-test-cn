@@ -47,5 +47,9 @@ describe('Run registry command', function () {
     const { stdout, stderr } = await execInFolder('sls publish', templateName)
     expect(stdout).contain('Successfully published react-starter-test')
     expect(stderr).to.equal('')
+    const { stdout: stdout2 } = await execInFolder(
+      'sls registry react-starter-test',
+    )
+    expect(stdout2).contain('Template: react-starter-test')
   })
 })
