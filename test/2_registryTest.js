@@ -43,9 +43,13 @@ describe('Run registry command', function () {
     expect(stderr).to.equal('')
   })
 
-  it('sls publish react-start-test component', async () => {
+  /* it('sls publish react-start-test component', async () => {
     const { stdout, stderr } = await execInFolder('sls publish', templateName)
     expect(stdout).contain('Successfully published react-starter-test')
     expect(stderr).to.equal('')
-  })
+    const { stdout: stdout2 } = await execInFolder(
+      'sls registry react-starter-test',
+    )
+    expect(stdout2).contain('Template: react-starter-test')
+  }) */
 })
