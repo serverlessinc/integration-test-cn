@@ -15,7 +15,7 @@ describe('Single instance', function () {
     const { stdout: versionInfo } = await exec(`sls -v`);
     console.log(versionInfo);
     console.log('\n> Starting tests, initing a sample project...');
-    const { stdout, stderr } = await exec(`sls init express-starter --name ${projectFolder}`);
+    const { stdout, stderr } = await exec(`sls init koa-starter --name ${projectFolder}`);
     expect(stdout).to.contain('Successfully');
     console.log('> Sample project initialized successfuly\n');
   });
@@ -40,6 +40,12 @@ describe('Single instance', function () {
     expect(stderr).to.equal('');
   });
 
+  it('sls bind role', async () => {
+    const { stdout, stderr } = await execInFolder('sls bind role');
+    expect(stdout).to.contain('已成功开通 Serverless 相关权限');
+    expect(stderr).to.equal('');
+  })
+
   describe('sls deploy', () => {
     it('sls deploy', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy');
@@ -51,5 +57,31 @@ describe('Single instance', function () {
       expect(stdout).to.contain('前往控制台查看应用详细信息');
       expect(stderr).to.equal('');
     });
+
+    it('sls deploy --inputs region="ap-shanghai"', async () => {
+      const { stdout, stderr } = await execInFolder('sls deploy --inputs region="ap-shanghai"');
+      expect(stdout).to.contain('ap-shanghai');
+      expect(stderr).to.equal('');
+    });
+
+    it('sls deploy without serverless.yml(remove serverless.yml first)', async () => {
+      await execInFolder('rm serverless.yml');
+      const { stdout, stderr } = await execInFolder('sls deploy');
+      expect(stdout).to.contain('ap-shanghai');
+      expect(stderr).to.equal('');
+    });
+    
+    it('sls info', async () => {
+      const { stdout, stderr } = await execInFolder('sls info');
+      expect(stdout).to.contain('Last Action');
+      expect(stderr).to.equal('');
+    });
+
+    it('sls info --debug', async () => {
+      const { stdout, stderr } = await execInFolder('sls info --debug');
+      expect(stdout).to.contain('Last Action');
+      expect(stderr).to.equal('');
+    });
   });
+
 });
