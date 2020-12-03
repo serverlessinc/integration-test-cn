@@ -67,7 +67,7 @@ describe('Single instance', function () {
     it('sls deploy without serverless.yml(remove serverless.yml first)', async () => {
       await execInFolder('rm serverless.yml');
       const { stdout, stderr } = await execInFolder('sls deploy');
-      expect(stdout).to.contain('ap-shanghai');
+      expect(stdout).to.contain('前往控制台查看应用详细信息');
       expect(stderr).to.equal('');
     });
     
