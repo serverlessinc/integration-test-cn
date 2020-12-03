@@ -46,5 +46,15 @@ describe('Nested template', function () {
       expect(stdout).to.contain('successfully');
       expect(stderr).to.equal('');
     });
+    it('sls info', async () => {
+      const { stdout, stderr } = await execInFolder('sls info');
+      expect(stdout).to.contain('Last Action');
+      expect(stderr).to.equal('');
+    });
+    it('sls info --debug', async () => {
+      const { stdout, stderr } = await execInFolder('sls info --debug');
+      expect(stdout).to.contain('Last Action');
+      expect(stderr).to.equal('');
+    });
   });
 });
