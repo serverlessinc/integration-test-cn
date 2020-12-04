@@ -44,7 +44,7 @@ describe('Single instance', function () {
     const { stdout, stderr } = await execInFolder('sls bind role');
     expect(stdout).to.contain('已成功开通 Serverless 相关权限');
     expect(stderr).to.equal('');
-  })
+  });
 
   describe('sls deploy', () => {
     it('sls deploy', async () => {
@@ -67,6 +67,7 @@ describe('Single instance', function () {
     it('sls deploy without serverless.yml(remove serverless.yml first)', async () => {
       await execInFolder('rm serverless.yml');
       const { stdout, stderr } = await execInFolder('sls deploy');
+      console.log(stdout, stderr);
       expect(stdout).to.contain('前往控制台查看应用详细信息');
       expect(stderr).to.equal('');
     });
