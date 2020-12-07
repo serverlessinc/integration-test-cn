@@ -30,7 +30,7 @@ npm test
 ### Trigger on coding CI
 
 ```bash
-curl -u pt20oxxgsiyc:001cc717496aa8fad85389906aa8a9c152b94db0 \
+curl -u token \
    -v -X POST  'https://sftest11.coding.net/api/cci/job/399367/trigger' \
    -H 'Content-Type: application/json' \
    -d '
@@ -40,4 +40,3 @@ curl -u pt20oxxgsiyc:001cc717496aa8fad85389906aa8a9c152b94db0 \
 }'
 ```
 
-> Note: the link will expire in 2021-12-01
