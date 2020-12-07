@@ -1,4 +1,4 @@
-> Coding mirror: https://sftest11.coding.net/public/integration-test-cn/integration-test-cn/git/files (auto synced every day)
+> Coding mirror: https://sftest11.coding.net/public/integration-test-cn/integration-test-cn/git/files
 
 > Run on coding CI: https://sftest11.coding.net/p/integration-test-cn/ci/job
 
