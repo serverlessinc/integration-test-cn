@@ -1,10 +1,12 @@
 > Coding mirror: https://sftest11.coding.net/public/integration-test-cn/integration-test-cn/git/files (auto synced every day)
-> Runs on coding CI: https://sftest11.coding.net/p/integration-test-cn/ci/job
+
+> Run on coding CI: https://sftest11.coding.net/p/integration-test-cn/ci/job
 
 ## About
 
-- Integration tests are stored in the `test` folder.
-- This repo will be synced to coding.net every day.
+- Integration tests are stored in the `test` folder
+- This repo will be synced to coding.net every day
+- Tests on coding CI will be triggered after platform-cn is deployed
 - The Jenkinsfile is used for CI on coding.net
 
 ## Usage
