@@ -16,7 +16,7 @@ pipeline {
         steps {
           sh 'npm install serverless'
           sh 'npm install'
-          sh 'npm test'
+          sh 'npm run test'
         }
       }
     }
