@@ -14,6 +14,7 @@ describe(`${template}`, function () {
     expect(stdout).to.contain('Last Action');
     expect(stderr).to.equal('');
   });
+
   it('sls deploy without serverless.yml (remove serverless.yml first)', async () => {
     await exec('rm serverless.yml', { cwd: template });
     const { stdout, stderr } = await exec('sls deploy', { cwd: template });

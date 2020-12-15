@@ -17,7 +17,9 @@
     "url": "https://github.com/serverlessinc/integration-test-cn/issues"
   },
   "homepage": "https://github.com/serverlessinc/integration-test-cn#readme",
-  "dependencies": {},
+  "dependencies": {
+    "js-yaml": "^3.14.1"
+  },
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^8.2.1"

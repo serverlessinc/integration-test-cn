@@ -1,4 +1,6 @@
+const fs = require('fs');
 const util = require('util');
+const yaml = require('js-yaml');
 const exec = util.promisify(require('child_process').exec);
 const expect = require('chai').expect;
 
@@ -26,7 +28,17 @@ describe('Single instance', function () {
     expect(stdout).to.contain('Success');
     await exec(`rm -rf ${projectFolder}`);
     console.log('> Instance code is remove locally and remotely');
-  })
+  });
+
+  it('node_modules folder auto created', async () => {
+    const exists = fs.existsSync(`${projectFolder}/node_modules`, 'utf8');
+    expect(exists).to.be.true;
+  });
+
+  it('proper name in yml', async () => {
+    const doc = yaml.safeLoad(fs.readFileSync(`${projectFolder}/serverless.yml`));
+    expect(doc.app).to.equal(projectFolder);
+  });
 
   it('sls -v', async () => {
     const { stdout, stderr } = await exec('sls -v');
@@ -73,7 +85,8 @@ describe('Single instance', function () {
 
     it('sls info --debug', async () => {
       const { stdout, stderr } = await execInFolder('sls info --debug');
-      expect(stdout).to.contain('Last Action');
+      expect(stdout).to.contain('Last Action:');
+      expect(stdout).to.contain('State:');
       expect(stderr).to.equal('');
     });
   });
