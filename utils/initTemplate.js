@@ -1,5 +1,7 @@
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
+const execInFolder = require('./execInFolder');
+
 const expect = require('chai').expect;
 
 module.exports = (template) => {
@@ -14,14 +16,14 @@ module.exports = (template) => {
 
   after(async () => {
     console.log('\n> Test finished , removing resources...');
-    const { stdout, stderr } = await exec(`sls remove`, { cwd: template });
+    const { stdout, stderr } = await execInFolder(`sls remove`, template);
     expect(stdout).to.contain('Success');
     await exec(`rm -rf ${template}`);
     console.log('> Instance code is removed locally and remotely');
   });
 
   it('sls deploy', async () => {
-    const { stdout, stderr } = await exec(`sls deploy`, { cwd: template });
+    const { stdout, stderr } = await execInFolder(`sls deploy`, template);
     expect(stdout).to.contain('前往控制台查看应用详细信息');
     expect(stderr).to.equal('');
   });

@@ -14,5 +14,4 @@ describe(`${template}`, function () {
     expect(stdout).to.contain('Last Action');
     expect(stderr).to.equal('');
   });
-
 });

@@ -4,8 +4,14 @@ const exec = util.promisify(require('child_process').exec)
 const expect = require('chai').expect
 
 const templateName = 'tencent-react-starter'
-const execInFolder = (cmd, path) => {
-  return exec(cmd, { cwd: path })
+const execInFolder = async (cmd, path) => {
+  let res = {};
+  try {
+    res = await exec(cmd, { cwd: path });
+  } catch (error) {
+    console.error(error);
+  }
+  return res;
 }
 
 describe('Registry related', function () {
@@ -53,7 +59,7 @@ describe('Registry related', function () {
   })
 
   /* it('sls publish react-start-test component', async () => {
-    const { stdout, stderr } = await execInFolder('sls publish', templateName)
+('sls publish', templateName)
     expect(stdout).contain('Successfully published react-starter-test')
     expect(stderr).to.equal('')
     const { stdout: stdout2 } = await execInFolder(
