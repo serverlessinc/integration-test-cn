@@ -52,6 +52,7 @@ describe('Single instance', function () {
       expect(stdout).to.contain('前往控制台查看应用详细信息');
       expect(stderr).to.equal('');
     });
+
     it('sls deploy --debug', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy --debug');
       expect(stdout).to.contain('前往控制台查看应用详细信息');
