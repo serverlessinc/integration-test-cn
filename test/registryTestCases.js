@@ -15,7 +15,7 @@ const execInFolder = async (cmd, path) => {
 }
 
 describe('Registry related', function () {
-  this.timeout(60000)
+  this.timeout(200000)
 
   before('Init a template project for testing registry publish', async () => {
     const { stdout: versionInfo } = await exec(`sls -v`)

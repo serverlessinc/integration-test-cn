@@ -11,7 +11,7 @@ const execInFolder = async (cmd) => {
 }
 
 describe('General test cases', function () {
-  this.timeout(60000);
+  this.timeout(200000);
 
   before('Init a project', async () => {
     const { stdout: versionInfo } = await exec(`sls -v`);

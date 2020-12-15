@@ -6,7 +6,7 @@ const initTemplate = require('../../utils/initTemplate');
 const template = 'scf-golang';
 
 describe(`${template}`, function () {
-  this.timeout(60000);
+  this.timeout(200000);
   initTemplate(template);
 
   it('sls info', async () => {
