@@ -8,7 +8,7 @@ const execInFolder = (cmd, path) => {
   return exec(cmd, { cwd: path })
 }
 
-describe('Run registry command', function () {
+describe('Registry related', function () {
   this.timeout(60000)
 
   before('Init a template project for testing registry publish', async () => {

@@ -10,7 +10,7 @@ const execInFolder = async (cmd) => {
   return exec(cmd, { cwd: projectFolder });
 }
 
-describe('Single instance', function () {
+describe('General test cases', function () {
   this.timeout(60000);
 
   before('Init a project', async () => {
@@ -59,6 +59,7 @@ describe('Single instance', function () {
   });
 
 
+
   describe('sls deploy', () => {
     it('sls deploy', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy');
@@ -78,12 +79,29 @@ describe('Single instance', function () {
       expect(stderr).to.equal('');
     });
 
-    it('sls deploy --inputs region="ap-abc"', async () => {
+    it('use unexisted method: sls abc', async () => {
+      try {
+        await execInFolder('sls abc')
+      } catch (error) {
+        // TODO: error message can be better
+        expect(error.stdout).contain('Component does not have the method:');
+      }
+    });
+
+    it('--input error: e.g. sls deploy --inputs region=ap-abc"', async () => {
       try {
         await execInFolder('sls deploy --inputs region="ap-abc"');
       } catch (error) {
         // TODO: the error message can be better
         expect(error.stdout).contain('ENOTFOUND');
+      }
+    });
+
+    it('sls deploy --target failed because target folder is not a serverless project', async () => {
+      try {
+        await execInFolder('sls deploy --target node_modules');
+      } catch (error) {
+        expect(error.stdout).contain('serverless config file was not found');
       }
     });
 
