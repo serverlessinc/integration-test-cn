@@ -30,16 +30,6 @@ describe('Single instance', function () {
     console.log('> Instance code is remove locally and remotely');
   });
 
-  it('node_modules folder auto created', async () => {
-    const exists = fs.existsSync(`${projectFolder}/node_modules`, 'utf8');
-    expect(exists).to.be.true;
-  });
-
-  it('proper name in yml', async () => {
-    const doc = yaml.safeLoad(fs.readFileSync(`${projectFolder}/serverless.yml`));
-    expect(doc.app).to.equal(projectFolder);
-  });
-
   it('sls -v', async () => {
     const { stdout, stderr } = await exec('sls -v');
     expect(stdout).to.contain('Framework Core:');
@@ -57,6 +47,17 @@ describe('Single instance', function () {
     expect(stdout).to.contain('已成功开通 Serverless 相关权限');
     expect(stderr).to.equal('');
   });
+
+  it('node_modules folder auto created', async () => {
+    const exists = fs.existsSync(`${projectFolder}/node_modules`, 'utf8');
+    expect(exists).to.be.true;
+  });
+
+  it('proper name in yml', async () => {
+    const doc = yaml.safeLoad(fs.readFileSync(`${projectFolder}/serverless.yml`));
+    expect(doc.app).to.equal(projectFolder);
+  });
+
 
   describe('sls deploy', () => {
     it('sls deploy', async () => {
@@ -76,7 +77,16 @@ describe('Single instance', function () {
       expect(stdout).to.contain('ap-shanghai');
       expect(stderr).to.equal('');
     });
-    
+
+    it('sls deploy --inputs region="ap-abc"', async () => {
+      try {
+        await execInFolder('sls deploy --inputs region="ap-abc"');
+      } catch (error) {
+        // TODO: the error message can be better
+        expect(error.stdout).contain('ENOTFOUND');
+      }
+    });
+
     it('sls info', async () => {
       const { stdout, stderr } = await execInFolder('sls info');
       expect(stdout).to.contain('Last Action');

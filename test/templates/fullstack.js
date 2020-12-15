@@ -15,4 +15,9 @@ describe(`${template}`, function () {
     expect(stderr).to.equal('');
   });
 
+  it('sls deploy --target vpc', async () => {
+    const { stdout, stderr } = await exec('sls deploy --target vpc', { cwd: template });
+    expect(stdout).to.contain('前往控制台查看应用详细信息');
+    expect(stderr).to.equal('');
+  })
 });

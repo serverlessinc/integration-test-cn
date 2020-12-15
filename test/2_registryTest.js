@@ -43,6 +43,15 @@ describe('Run registry command', function () {
     expect(stderr).to.equal('')
   })
 
+  it('template/component not found', async () => {
+    try {
+      await execInFolder('sls registry an_random_template_not_exists')
+    } catch (error) {
+      // TODO: error message can be better
+      expect(error.stdout).contain('not found');
+    }
+  })
+
   /* it('sls publish react-start-test component', async () => {
     const { stdout, stderr } = await execInFolder('sls publish', templateName)
     expect(stdout).contain('Successfully published react-starter-test')
