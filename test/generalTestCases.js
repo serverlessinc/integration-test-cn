@@ -146,11 +146,12 @@ describe('General test cases', function () {
       expect(stderr).to.equal('');
     });
 
-    it('sls deploy --inputs region="ap-shanghai"', async () => {
-      const { stdout, stderr } = await execInFolder('sls deploy --inputs region="ap-shanghai"', projectFolder);
-      expect(stdout).to.contain('ap-shanghai');
-      expect(stderr).to.equal('');
-    });
+    // Not testing region switching, as after switching region, serverless will create multiple scf instances
+    // it('sls deploy --inputs region="ap-shanghai"', async () => {
+    //   const { stdout, stderr } = await execInFolder('sls deploy --inputs region="ap-shanghai"', projectFolder);
+    //   expect(stdout).to.contain('ap-shanghai');
+    //   expect(stderr).to.equal('');
+    // });
 
     it('use unexisted method: sls abc', async () => {
       try {
