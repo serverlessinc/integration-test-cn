@@ -50,7 +50,7 @@ SERVERLESS_PLATFORM_STAGE=dev npm run test
 
 `npm run test` will be ran and after that, all the templates will be tested (`npm run test-template express-starter`...)
 
-- Everytime after the deployment of `platform-cn`, the general integraion tests will be auto triggered (by calling coding CI's API). ref: https://github.com/serverlessinc/platform-cn/pull/133/files
+- Everytime after the deployment of `platform-cn`, the integration tests will be auto triggered (by calling coding CI's API). ref: https://github.com/serverlessinc/platform-cn/pull/133/files
 - **You can see the tests results here**: https://sftest11.coding.net/p/integration-test-cn/ci/job?id=399367
 
 
