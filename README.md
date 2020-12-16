@@ -18,20 +18,20 @@ npm i serverless -g
 
 ### Run Tests
 
-1. Run general test cases on PROD env
+#### Run general test cases on PROD env
 
 ```bash
 # run general integration tests
 npm run test
 ```
 
-1. Run tests for a specific template
+#### Run tests for a specific template
 ```bash
 # run tests for a specific template
 npm run test-template express-starter
 ```
 
-1. Run general integraion tests for DEV environment
+#### Run general integraion tests for DEV environment
 ```bash
 # run integraion tests on DEV env
 SERVERLESS_PLATFORM_STAGE=dev npm run test
