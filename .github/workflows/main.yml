@@ -11,7 +11,7 @@ on:
 jobs:
   runIntegrationTestsOnCodingCI:
     name: trigger integration tests on coding.net CI
-    runs-on: unbuntu-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Call API
         run: |
