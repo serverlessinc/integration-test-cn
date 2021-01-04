@@ -15,7 +15,7 @@ describe(`${template}`, function () {
     const { stdout, stderr } = await exec(`sls init fullstack --name ${template}`);
     expect(stdout).to.contain('Successfully');
     expect(stderr).to.equal('');
-    console.log('> Sample project initialized successfuly\n');
+    console.log('> Sample project initialized successfully\n');
   });
 
   after(async () => {
