@@ -15,4 +15,11 @@ describe(`${template}`, function () {
     expect(stdout).to.contain('Last Action');
     expect(stderr).to.equal('');
   });
+
+  it('sls deploy without serverless.yml (remove serverless.yml first)', async () => {
+    await execInFolder('rm serverless.yml', template);
+    const { stdout, stderr } = await execInFolder('sls deploy', template);
+    expect(stdout).to.contain('前往控制台查看应用详细信息');
+    expect(stderr).to.equal('');
+  });
 });
