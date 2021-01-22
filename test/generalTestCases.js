@@ -62,6 +62,18 @@ describe('General test cases', function () {
     expect(stderr).to.equal('')
   });
 
+  it('sls publish template', async () => {
+    const { stdout, stderr } = await execInFolder('sls publish', 'templateExample');
+    expect(stdout).contain('Successfully');
+    expect(stderr).to.equal('');
+  });
+
+  it('sls publish component', async () => {
+    const { stdout, stderr } = await execInFolder('sls publish', 'componentExample');
+    expect(stdout).contain('Successfully');
+    expect(stderr).to.equal('');
+  });
+
   it('sls registry to search a specific component: koa', async () => {
     const { stdout, stderr } = await execInFolder('sls registry koa')
     expect(stdout).contain('Component: koa')
