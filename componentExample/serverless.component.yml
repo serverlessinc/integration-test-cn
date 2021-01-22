@@ -1,0 +1,10 @@
+name: scf-abc
+author: Tencent Cloud, Inc.
+org: Tencent Cloud, Inc.
+description: Deploy a serverless cloud function on Tencent Cloud.
+keywords: tencent, serverless, SCF
+repo: https://github.com/serverless-components/tencent-scf
+readme: https://github.com/serverless-components/tencent-scf/tree/master/README.md
+license: MIT
+main: ./
+webDeployable: true
