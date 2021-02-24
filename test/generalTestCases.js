@@ -170,7 +170,7 @@ describe('General test cases', function () {
         await exec('sls abc', { cwd: projectFolder })
       } catch (error) {
         // TODO: error message can be better
-        expect(error.stdout).contain('Component does not have the method:');
+        expect(error.stdout).contain('请检查该命令是否存在');
       }
     });
 
