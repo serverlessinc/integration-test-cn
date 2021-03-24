@@ -77,9 +77,6 @@ describe('General test cases', function () {
   it('sls registry to search a specific component: koa', async () => {
     const { stdout, stderr } = await execInFolder('sls registry koa')
     expect(stdout).contain('代码地址')
-    expect(stdout).contain(
-      'Repo: https://github.com/serverless-components/tencent-koa/',
-    )
     expect(stderr).to.equal('')
   });
 
