@@ -58,25 +58,25 @@ describe('General test cases', function () {
 
   it('sls registry', async () => {
     const { stdout, stderr } = await execInFolder('sls registry')
-    expect(stdout).contain('to install a template')
+    expect(stdout).contain('serverless init')
     expect(stderr).to.equal('')
   });
 
   it('sls publish template', async () => {
     const { stdout, stderr } = await execInFolder('sls publish', 'templateExample');
-    expect(stdout).contain('Successfully');
+    expect(stdout).contain('发布成功');
     expect(stderr).to.equal('');
   });
 
   it('sls publish component', async () => {
     const { stdout, stderr } = await execInFolder('sls publish', 'componentExample');
-    expect(stdout).contain('Successfully');
+    expect(stdout).contain('发布成功');
     expect(stderr).to.equal('');
   });
 
   it('sls registry to search a specific component: koa', async () => {
     const { stdout, stderr } = await execInFolder('sls registry koa')
-    expect(stdout).contain('Component: koa')
+    expect(stdout).contain('代码地址')
     expect(stdout).contain(
       'Repo: https://github.com/serverless-components/tencent-koa/',
     )
@@ -88,7 +88,7 @@ describe('General test cases', function () {
       await exec('sls registry an_random_template_not_exists', { cwd: projectFolder })
     } catch (error) {
       // TODO: error message can be better
-      expect(error.stdout).contain('not found');
+      expect(error.stdout).contain('没有找到');
     }
   });
   
