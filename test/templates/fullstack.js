@@ -30,7 +30,7 @@ describe(`${template}`, function () {
   describe('sls deploy', () => {
     it('sls deploy --target vpc', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy --target vpc', template);
-      expect(stdout).to.contain('前往控制台查看应用详细信息');
+      expect(stdout).to.contain('应用控制台');
       expect(stderr).to.equal('');
     })
     it('sls deploy', async () => {
@@ -45,12 +45,12 @@ describe(`${template}`, function () {
     });
     it('sls info', async () => {
       const { stdout, stderr } = await execInFolder('sls info', template);
-      expect(stdout).to.contain('Last Action');
+      expect(stdout).to.contain('最后操作');
       expect(stderr).to.equal('');
     });
     it('sls info --debug', async () => {
       const { stdout, stderr } = await execInFolder('sls info --debug', template);
-      expect(stdout).to.contain('Last Action');
+      expect(stdout).to.contain('最后操作');
       expect(stderr).to.equal('');
     });
   });

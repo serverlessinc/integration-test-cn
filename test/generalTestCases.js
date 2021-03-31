@@ -26,7 +26,7 @@ describe('General test cases', function () {
       const doc = yaml.safeLoad(yamlFile);
       doc.component = 'koa@dev';
       const newYaml = yaml.safeDump(doc);
-      fs.writeFileSync(`${projectFolder}/serverless.yml`, newYaml, 'utf-8'); 
+      fs.writeFileSync(`${projectFolder}/serverless.yml`, newYaml, 'utf-8');
     }
   });
 
@@ -85,10 +85,10 @@ describe('General test cases', function () {
       await exec('sls registry an_random_template_not_exists', { cwd: projectFolder })
     } catch (error) {
       // TODO: error message can be better
-      expect(error.stdout).contain('没有找到');
+      expect(error.stdout).contain('不存在');
     }
   });
-  
+
   it('node_modules folder auto created', async () => {
     const exists = fs.existsSync(`${projectFolder}/node_modules`, 'utf8');
     expect(exists).to.be.true;
@@ -111,7 +111,7 @@ describe('General test cases', function () {
     } catch (error) {
       // console.log(error);
 
-      // TODO: the error message can be better, 
+      // TODO: the error message can be better,
       // sometimes: ENOTFOUND serverless-ap-abc-code-1303241281.cos.ap-abc.myqcloud.com serverless-ap-abc-code-1303241281.cos.ap-abc.myqcloud.com:443
       // sometimes: A value specified in `Region` is not valid, is unsupported, or cannot be used. (reqId: 6552d8f3-1de7-416a-9e56-756a9a958ae6)
       expect(error.stdout).contain('帮助文档');
@@ -145,13 +145,13 @@ describe('General test cases', function () {
   describe('sls deploy', () => {
     it('sls deploy', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy', projectFolder);
-      expect(stdout).to.contain('前往控制台查看应用详细信息');
+      expect(stdout).to.contain('应用控制台');
       expect(stderr).to.equal('');
     });
 
     it('sls deploy --debug', async () => {
       const { stdout, stderr } = await execInFolder('sls deploy --debug', projectFolder);
-      expect(stdout).to.contain('前往控制台查看应用详细信息');
+      expect(stdout).to.contain('应用控制台');
       expect(stderr).to.equal('');
     });
 
@@ -184,19 +184,19 @@ describe('General test cases', function () {
       try {
         await exec('sls deploy --target node_modules', { cwd: projectFolder });
       } catch (error) {
-        expect(error.stdout).contain('serverless config file was not found');
+        expect(error.stdout).contain('没有找到serverless配置文件，请检查');
       }
     });
 
     it('sls info', async () => {
       const { stdout, stderr } = await execInFolder('sls info', projectFolder);
-      expect(stdout).to.contain('Last Action');
+      expect(stdout).to.contain('最后操作');
       expect(stderr).to.equal('');
     });
 
     it('sls info --debug', async () => {
       const { stdout, stderr } = await execInFolder('sls info --debug', projectFolder);
-      expect(stdout).to.contain('Last Action:');
+      expect(stdout).to.contain('最后操作:');
       expect(stdout).to.contain('State:');
       expect(stderr).to.equal('');
     });
