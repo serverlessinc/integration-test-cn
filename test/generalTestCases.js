@@ -96,7 +96,7 @@ describe('General test cases', function () {
 
   it('proper name is auto generated in yml', async () => {
     const doc = yaml.safeLoad(fs.readFileSync(`${projectFolder}/serverless.yml`));
-    expect(doc.app).to.equal(projectFolder);
+    expect(doc.app).contain(projectFolder);
   });
 
   it('throws error when the region in serverless.yml is not right: e.g. ap-abc', async () => {
