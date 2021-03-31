@@ -12,7 +12,7 @@ describe(`${template}`, function () {
 
   it('sls info', async () => {
     const { stdout, stderr } = await execInFolder('sls info', template);
-    expect(stdout).to.contain('Last Action');
+    expect(stdout).to.contain('最后操作');
     expect(stderr).to.equal('');
   });
 

@@ -24,7 +24,7 @@ module.exports = (template) => {
 
   it('sls deploy', async () => {
     const { stdout, stderr } = await execInFolder(`sls deploy`, template);
-    expect(stdout).to.contain('前往控制台查看应用详细信息');
+    expect(stdout).to.contain('应用控制台');
     expect(stderr).to.equal('');
   });
 }
