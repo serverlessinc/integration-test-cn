@@ -10,7 +10,7 @@ module.exports = (template) => {
     console.log(versionInfo);
     console.log('\n> Starting tests, initing a sample project...')
     const { stdout, stderr } = await exec(`sls init ${template}`);
-    expect(stdout).to.contain('Successfully');
+    expect(stdout).to.contain('创建成功');
     console.log('> Sample project initialized successfuly\n');
   });
 
