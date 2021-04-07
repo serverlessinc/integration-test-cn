@@ -15,7 +15,7 @@ describe('General test cases', function () {
     console.log(versionInfo);
     console.log('\n> Starting tests, initing a sample project...');
     const { stdout, stderr } = await exec(`sls init koa-starter --name ${projectFolder}`);
-    expect(stdout).to.contain('Successfully');
+    expect(stdout).to.contain('创建成功');
     console.log('> Sample project initialized successfuly\n');
 
     console.log('SERVERLESS_PLATFORM_STAGE', process.env.SERVERLESS_PLATFORM_STAGE);
