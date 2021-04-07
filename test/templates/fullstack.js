@@ -13,7 +13,7 @@ describe(`${template}`, function () {
     console.log(versionInfo);
     console.log('\n> Starting tests, initing a sample project...');
     const { stdout, stderr } = await exec(`sls init fullstack --name ${template}`);
-    expect(stdout).to.contain('Successfully');
+    expect(stdout).to.contain('创建成功');
     expect(stderr).to.equal('');
     console.log('> Sample project initialized successfully\n');
   });
