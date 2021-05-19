@@ -33,7 +33,7 @@ describe('General test cases', function () {
   after(async () => {
     console.log('\n> Test finished , removing resources...');
     const { stdout, stderr } = await execInFolder(`sls remove`, projectFolder);
-    expect(stdout).to.contain('Success');
+    expect(stdout).to.contain('执行成功');
     await exec(`rm -rf ${projectFolder}`);
     console.log('> Instance code is remove locally and remotely');
   });
