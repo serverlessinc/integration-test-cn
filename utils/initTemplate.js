@@ -17,7 +17,7 @@ module.exports = (template) => {
   after(async () => {
     console.log('\n> Test finished , removing resources...');
     const { stdout, stderr } = await execInFolder(`sls remove`, template);
-    expect(stdout).to.contain('Success');
+    expect(stdout).to.contain('执行成功');
     await exec(`rm -rf ${template}`);
     console.log('> Instance code is removed locally and remotely');
   });
