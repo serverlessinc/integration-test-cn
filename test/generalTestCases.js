@@ -46,7 +46,7 @@ describe('General test cases', function () {
 
   it('sls help', async () => {
     const { stdout, stderr } = await execInFolder('sls help', projectFolder);
-    expect(stdout).to.contain('Serverless 命令');
+    expect(stdout).to.contain('命令');
     expect(stderr).to.equal('');
   });
 
