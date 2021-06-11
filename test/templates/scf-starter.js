@@ -16,4 +16,16 @@ describe(`${template}`, function () {
     expect(stderr).to.equal('');
   });
 
+  it('sls invoke local', async () => {
+    const { stdout, stderr } = await execInFolder('sls invoke', template);
+    expect(stdout).to.contain('调用成功');
+    expect(stderr).to.equal('');
+  });
+
+  it('sls invoke', async () => {
+    const { stdout, stderr } = await execInFolder('sls invoke', template);
+    expect(stdout).to.contain('调用成功');
+    expect(stderr).to.equal('');
+  });
+
 });

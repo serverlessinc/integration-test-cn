@@ -200,6 +200,12 @@ describe('General test cases', function () {
       expect(stdout).to.contain('State:');
       expect(stderr).to.equal('');
     });
+
+    // it('sls logs', async () => {
+    //   const { stdout, stderr } = await execInFolder('sls logs', projectFolder);
+    //   expect(stdout).to.contain('获取日志成功');
+    //   expect(stderr).to.equal('');
+    // });
   });
 
 });
