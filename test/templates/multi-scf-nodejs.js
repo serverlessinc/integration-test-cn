@@ -4,7 +4,7 @@ const execInFolder = require('../../utils/execInFolder');
 const expect = require('chai').expect;
 const initTemplate = require('../../utils/initTemplate');
 
-const template = 'scf-starter';
+const template = 'multi-scf-nodejs';
 
 describe(`${template}`, function () {
   this.timeout(200000);
@@ -17,14 +17,20 @@ describe(`${template}`, function () {
   });
 
   it('sls invoke local', async () => {
-    const { stdout, stderr } = await execInFolder('sls invoke local', template);
+    const { stdout, stderr } = await execInFolder('sls invoke local --function index', template);
     expect(stdout).to.contain('调用成功');
     expect(stderr).to.equal('');
   });
 
   it('sls invoke', async () => {
-    const { stdout, stderr } = await execInFolder('sls invoke', template);
+    const { stdout, stderr } = await execInFolder('sls invoke --function index', template);
     expect(stdout).to.contain('调用成功');
+    expect(stderr).to.equal('');
+  });
+
+  it('sls logs', async () => {
+	  const { stdout, stderr } = await execInFolder('sls logs --function index', template);
+    expect(stdout).to.contain('获取日志成功');
     expect(stderr).to.equal('');
   });
 
