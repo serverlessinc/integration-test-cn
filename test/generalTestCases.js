@@ -11,10 +11,10 @@ describe('General test cases', function () {
   this.timeout(200000);
 
   before('Init a project', async () => {
-    const { stdout: versionInfo } = await exec(`sls -v`);
+    const { stdout: versionInfo } = await exec(`components -v`);
     console.log(versionInfo);
     console.log('\n> Starting tests, initing a sample project...');
-    const { stdout, stderr } = await exec(`sls init koa-starter --name ${projectFolder}`);
+    const { stdout, stderr } = await exec(`components init koa-starter --name ${projectFolder}`);
     expect(stdout).to.contain('创建成功');
     console.log('> Sample project initialized successfuly\n');
 
@@ -32,57 +32,57 @@ describe('General test cases', function () {
 
   after(async () => {
     console.log('\n> Test finished , removing resources...');
-    const { stdout, stderr } = await execInFolder(`sls remove`, projectFolder);
+    const { stdout, stderr } = await execInFolder(`components remove`, projectFolder);
     expect(stdout).to.contain('执行成功');
     await exec(`rm -rf ${projectFolder}`);
     console.log('> Instance code is remove locally and remotely');
   });
 
-  it('sls -v', async () => {
-    const { stdout, stderr } = await exec('sls -v');
+  it('components -v', async () => {
+    const { stdout, stderr } = await exec('components -v');
     expect(stdout).to.contain('Framework Core:');
     expect(stderr).to.equal('');
   });
 
-  it('sls help', async () => {
-    const { stdout, stderr } = await execInFolder('sls help', projectFolder);
+  it('components help', async () => {
+    const { stdout, stderr } = await execInFolder('components help', projectFolder);
     expect(stdout).to.contain('命令');
     expect(stderr).to.equal('');
   });
 
-  it('sls bind role', async () => {
-    const { stdout, stderr } = await execInFolder('sls bind role', projectFolder);
+  it('components bind role', async () => {
+    const { stdout, stderr } = await execInFolder('components bind role', projectFolder);
     expect(stdout).to.contain('已成功开通 Serverless 相关权限');
     expect(stderr).to.equal('');
   });
 
-  it('sls registry', async () => {
-    const { stdout, stderr } = await execInFolder('sls registry')
+  it('components registry', async () => {
+    const { stdout, stderr } = await execInFolder('components registry')
     expect(stdout).contain('serverless init')
     expect(stderr).to.equal('')
   });
 
-  it('sls publish template', async () => {
-    const { stdout, stderr } = await execInFolder('sls publish', 'templateExample');
+  it('components publish template', async () => {
+    const { stdout, stderr } = await execInFolder('components publish', 'templateExample');
     expect(stdout).contain('发布成功');
     expect(stderr).to.equal('');
   });
 
-  it('sls publish component', async () => {
-    const { stdout, stderr } = await execInFolder('sls publish', 'componentExample');
+  it('components publish component', async () => {
+    const { stdout, stderr } = await execInFolder('components publish', 'componentExample');
     expect(stdout).contain('发布成功');
     expect(stderr).to.equal('');
   });
 
-  it('sls registry to search a specific component: koa', async () => {
-    const { stdout, stderr } = await execInFolder('sls registry koa')
+  it('components registry to search a specific component: koa', async () => {
+    const { stdout, stderr } = await execInFolder('components registry koa')
     expect(stdout).contain('代码地址')
     expect(stderr).to.equal('')
   });
 
   it('template/component not found', async () => {
     try {
-      await exec('sls registry an_random_template_not_exists', { cwd: projectFolder })
+      await exec('components registry an_random_template_not_exists', { cwd: projectFolder })
     } catch (error) {
       // TODO: error message can be better
       expect(error.stdout).contain('不存在');
@@ -107,7 +107,7 @@ describe('General test cases', function () {
     fs.writeFileSync(`${projectFolder}/serverless.yml`, newYaml, 'utf-8');
 
     try {
-      await exec('sls deploy', { cwd: projectFolder });
+      await exec('components deploy', { cwd: projectFolder });
     } catch (error) {
       // console.log(error);
 
@@ -130,7 +130,7 @@ describe('General test cases', function () {
     fs.writeFileSync(`${projectFolder}/serverless.yml`, newYaml, 'utf-8');
 
     try {
-      await exec('sls deploy', { cwd: projectFolder });
+      await exec('components deploy', { cwd: projectFolder });
     } catch (error) {
       // console.log(error);
 
@@ -142,67 +142,67 @@ describe('General test cases', function () {
     fs.writeFileSync(`${projectFolder}/serverless.yml`, yamlFile, 'utf-8');
   });
 
-  describe('sls deploy', () => {
-    it('sls deploy', async () => {
-      const { stdout, stderr } = await execInFolder('sls deploy', projectFolder);
+  describe('components deploy', () => {
+    it('components deploy', async () => {
+      const { stdout, stderr } = await execInFolder('components deploy', projectFolder);
       expect(stdout).to.contain('应用控制台');
       expect(stderr).to.equal('');
     });
 
-    it('sls deploy --debug', async () => {
-      const { stdout, stderr } = await execInFolder('sls deploy --debug', projectFolder);
+    it('components deploy --debug', async () => {
+      const { stdout, stderr } = await execInFolder('components deploy --debug', projectFolder);
       expect(stdout).to.contain('应用控制台');
       expect(stderr).to.equal('');
     });
 
     // Not testing region switching, as after switching region, serverless will create multiple scf instances
-    // it('sls deploy --inputs region="ap-shanghai"', async () => {
-    //   const { stdout, stderr } = await execInFolder('sls deploy --inputs region="ap-shanghai"', projectFolder);
+    // it('components deploy --inputs region="ap-shanghai"', async () => {
+    //   const { stdout, stderr } = await execInFolder('components deploy --inputs region="ap-shanghai"', projectFolder);
     //   expect(stdout).to.contain('ap-shanghai');
     //   expect(stderr).to.equal('');
     // });
 
-    it('use unexisted method: sls abc', async () => {
+    it('use unexisted method: components abc', async () => {
       try {
-        await exec('sls abc', { cwd: projectFolder })
+        await exec('components abc', { cwd: projectFolder })
       } catch (error) {
         // TODO: error message can be better
         expect(error.stdout).contain('请检查该命令是否存在');
       }
     });
 
-    it('--input error: e.g. sls deploy --inputs region=ap-abc"', async () => {
+    it('--input error: e.g. components deploy --inputs region=ap-abc"', async () => {
       try {
-        await exec('sls deploy --inputs region="ap-abc"', { cwd: projectFolder });
+        await exec('components deploy --inputs region="ap-abc"', { cwd: projectFolder });
       } catch (error) {
         // TODO: the error message can be better
         expect(error.stdout).contain('帮助文档');
       }
     });
 
-    it('sls deploy --target failed because target folder is not a serverless project', async () => {
+    it('components deploy --target failed because target folder is not a serverless project', async () => {
       try {
-        await exec('sls deploy --target node_modules', { cwd: projectFolder });
+        await exec('components deploy --target node_modules', { cwd: projectFolder });
       } catch (error) {
         expect(error.stdout).contain('没有找到serverless配置文件，请检查');
       }
     });
 
-    it('sls info', async () => {
-      const { stdout, stderr } = await execInFolder('sls info', projectFolder);
+    it('components info', async () => {
+      const { stdout, stderr } = await execInFolder('components info', projectFolder);
       expect(stdout).to.contain('最后操作');
       expect(stderr).to.equal('');
     });
 
-    it('sls info --debug', async () => {
-      const { stdout, stderr } = await execInFolder('sls info --debug', projectFolder);
+    it('components info --debug', async () => {
+      const { stdout, stderr } = await execInFolder('components info --debug', projectFolder);
       expect(stdout).to.contain('最后操作:');
       expect(stdout).to.contain('State:');
       expect(stderr).to.equal('');
     });
 
-    // it('sls logs', async () => {
-    //   const { stdout, stderr } = await execInFolder('sls logs', projectFolder);
+    // it('components logs', async () => {
+    //   const { stdout, stderr } = await execInFolder('components logs', projectFolder);
     //   expect(stdout).to.contain('获取日志成功');
     //   expect(stderr).to.equal('');
     // });
