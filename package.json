@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/serverlessinc/integration-test-cn#readme",
   "dependencies": {
+    "@serverless/components": "^3.13.2-1955fa47",
     "js-yaml": "^3.14.1"
   },
   "devDependencies": {
