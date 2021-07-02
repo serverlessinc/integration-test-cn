@@ -9,10 +9,12 @@ describe(`${template}`, function () {
   this.timeout(200000);
 
   before('Init a project', async () => {
-    const { stdout: versionInfo } = await exec(`sls -v`);
+    const { stdout: versionInfo } = await exec(`components -v`);
     console.log(versionInfo);
     console.log('\n> Starting tests, initing a sample project...');
-    const { stdout, stderr } = await exec(`sls init fullstack --name ${template}`);
+    const { stdout, stderr } = await exec(
+      `components init fullstack --name ${template}`,
+    );
     expect(stdout).to.contain('创建成功');
     expect(stderr).to.equal('');
     console.log('> Sample project initialized successfully\n');
@@ -20,36 +22,54 @@ describe(`${template}`, function () {
 
   after(async () => {
     console.log('\n> Test finished , removing resources...');
-    const { stdout, stderr } = await execInFolder(`sls remove`, template);
+    const { stdout, stderr } = await execInFolder(
+      `components remove`,
+      template,
+    );
     expect(stdout).to.contain('successfully');
     expect(stderr).to.equal('');
     await exec(`rm -rf ${template}`);
     console.log('> Instance code is remove locally and remotely');
-  })
+  });
 
-  describe('sls deploy', () => {
-    it('sls deploy --target vpc', async () => {
-      const { stdout, stderr } = await execInFolder('sls deploy --target vpc', template);
+  describe('components deploy', () => {
+    it('components deploy --target vpc', async () => {
+      const { stdout, stderr } = await execInFolder(
+        'components deploy --target vpc',
+        template,
+      );
       expect(stdout).to.contain('应用控制台');
       expect(stderr).to.equal('');
-    })
-    it('sls deploy', async () => {
-      const { stdout, stderr } = await execInFolder('sls deploy', template);
+    });
+    it('components deploy', async () => {
+      const { stdout, stderr } = await execInFolder(
+        'components deploy',
+        template,
+      );
       expect(stdout).to.contain('successfully');
       expect(stderr).to.equal('');
     });
-    it('sls deploy --debug', async () => {
-      const { stdout, stderr } = await execInFolder('sls deploy --debug', template);
+    it('components deploy --debug', async () => {
+      const { stdout, stderr } = await execInFolder(
+        'components deploy --debug',
+        template,
+      );
       expect(stdout).to.contain('successfully');
       expect(stderr).to.equal('');
     });
-    it('sls info', async () => {
-      const { stdout, stderr } = await execInFolder('sls info', template);
+    it('components info', async () => {
+      const { stdout, stderr } = await execInFolder(
+        'components info',
+        template,
+      );
       expect(stdout).to.contain('最后操作');
       expect(stderr).to.equal('');
     });
-    it('sls info --debug', async () => {
-      const { stdout, stderr } = await execInFolder('sls info --debug', template);
+    it('components info --debug', async () => {
+      const { stdout, stderr } = await execInFolder(
+        'components info --debug',
+        template,
+      );
       expect(stdout).to.contain('最后操作');
       expect(stderr).to.equal('');
     });
