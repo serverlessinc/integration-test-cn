@@ -26,7 +26,7 @@ describe(`${template}`, function () {
       `components remove`,
       template,
     );
-    expect(stdout).to.contain('successfully');
+    expect(stdout).to.contain('成功');
     expect(stderr).to.equal('');
     await exec(`rm -rf ${template}`);
     console.log('> Instance code is remove locally and remotely');
@@ -46,7 +46,7 @@ describe(`${template}`, function () {
         'components deploy',
         template,
       );
-      expect(stdout).to.contain('successfully');
+      expect(stdout).to.contain('成功');
       expect(stderr).to.equal('');
     });
     it('components deploy --debug', async () => {
@@ -54,7 +54,7 @@ describe(`${template}`, function () {
         'components deploy --debug',
         template,
       );
-      expect(stdout).to.contain('successfully');
+      expect(stdout).to.contain('成功');
       expect(stderr).to.equal('');
     });
     it('components info', async () => {
